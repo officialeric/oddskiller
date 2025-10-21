@@ -13,11 +13,17 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [notification, setNotification] = useState({ show: false, message: '', type: '' });
 
+  const encode = (data) => {
+    return Object.keys(data)
+      .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+      .join('&');
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -26,30 +32,34 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/contact/submit/', {
+      await fetch('/', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData)
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encode({
+          'form-name': 'contact-form',
+          ...formData,
+        }),
       });
 
-      const data = await response.json();
+      setNotification({
+        show: true,
+        message: 'Message sent successfully!',
+        type: 'success',
+      });
 
-      if (data.success) {
-        setNotification({ show: true, message: data.message || 'Message sent successfully!', type: 'success' });
-        setFormData({
-          full_name: '',
-          email: '',
-          phone: '',
-          subject: '',
-          message: ''
-        });
-      } else {
-        setNotification({ show: true, message: data.message || 'Failed to send message', type: 'error' });
-      }
+      setFormData({
+        full_name: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: '',
+      });
     } catch (error) {
-      setNotification({ show: true, message: 'Something went wrong. Please try again.', type: 'error' });
+      setNotification({
+        show: true,
+        message: 'Something went wrong. Please try again.',
+        type: 'error',
+      });
     } finally {
       setIsSubmitting(false);
       setTimeout(() => {
@@ -70,7 +80,21 @@ const Contact = () => {
           </div>
         )}
 
-        <form id="contactForm" onSubmit={handleSubmit}>
+        <form
+          name="contact-form"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          onSubmit={handleSubmit}
+        >
+          {/* Required by Netlify */}
+          <input type="hidden" name="form-name" value="contact-form" />
+          <p hidden>
+            <label>
+              Don’t fill this out if you're human: <input name="bot-field" />
+            </label>
+          </p>
+
           <div className="row">
             <div className="col-lg-6 col-md-6">
               <div className="input-area">
@@ -135,9 +159,15 @@ const Contact = () => {
               <div className="input-area">
                 <button type="submit" className="vl-btn1" disabled={isSubmitting}>
                   {isSubmitting ? 'Sending...' : 'Submit'}
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" style={{ marginLeft: '8px', marginTop: '-4px' }}>
-                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
-                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    style={{ marginLeft: '8px', marginTop: '-4px' }}
+                  >
+                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                   </svg>
                 </button>
               </div>
