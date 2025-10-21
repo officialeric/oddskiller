@@ -42,6 +42,8 @@
   overflow: hidden;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
   margin-bottom: 24px;
+  display: flex;
+  justify-content: center;
 }
 
 .personal-contact-box .img1 img {
