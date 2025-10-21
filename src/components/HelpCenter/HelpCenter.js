@@ -73,7 +73,7 @@ const HelpCenter = () => {
     },
     {
       id: 6,
-      question: "Natoaje Pesa kupitia Application ya Paripesa?",
+      question: "Natoaje Pesa kupitia Application?",
       answer: (
         <ol>
           <li>Fungua App hafu Click "MENU"</li>
@@ -95,7 +95,7 @@ const HelpCenter = () => {
             <img src="/logo.png" alt="Logo" />
           </div>
 
-          <h1 className="mb-5">Maswali na Majibu Kuhusu PARIPESA</h1>
+          <h1 className="mb-5">Maswali na Majibu</h1>
 
           <div className="accordion-container">
             {faqs.map((faq, index) => (
