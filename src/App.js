@@ -1,24 +1,41 @@
-import logo from './logo.svg';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
+import Hero from './components/Hero/Hero';
+import Contact from './components/Contact/Contact';
+// import Footer from './components/Footer/Footer';
+import Preloader from './components/Preloader/Preloader';
+import HelpCenter from './components/HelpCenter/HelpCenter';
+import CB from './components/cb/cb';
+
+function HomePage() {
+  return (
+    <div className="page-wrapper">
+      <div className="main-hero-area">
+        <div className="container">
+          <div className="hero-contact-row">
+            <Hero />
+            <Contact />
+          </div>
+        </div>
+      </div>
+      {/* <Footer /> */}
+    </div>
+  );
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App body1">
+        <Preloader />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/help" element={<HelpCenter />} />
+          <Route path='/cb' element={<CB/>} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

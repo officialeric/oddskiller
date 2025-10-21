@@ -1,6 +1,40 @@
-# Getting Started with Create React App
+# GivaTips - React Portfolio Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, responsive React application converted from HTML/CSS/jQuery to React with a clean component-based architecture.
+
+## 🚀 Features
+
+- **Modern React Architecture**: Component-based structure for better maintainability
+- **Responsive Design**: Fully responsive layout that works on all devices
+- **Smooth Animations**: AOS-inspired scroll animations implemented in React
+- **Contact Form**: Functional contact form with validation and notifications
+- **Clean UI**: Professional design with gradient backgrounds and hover effects
+- **Social Media Integration**: Links to Twitter, Instagram, and Telegram
+
+## 📁 Project Structure
+
+```
+oddskiller/
+├── src/
+│   ├── components/
+│   │   ├── Contact/     # Contact form component
+│   │   ├── Footer/      # Footer component
+│   │   ├── Hero/        # Profile sidebar component
+│   │   └── Preloader/   # Loading animation
+│   ├── App.js           # Main app component
+│   ├── App.css          # Global styles
+│   └── index.js         # Entry point
+└── package.json
+```
+
+## 🎨 Key Improvements from Original HTML
+
+1. **Component-Based Architecture**: Modular, reusable components
+2. **React State Management**: Proper form handling with React hooks
+3. **No jQuery Dependency**: Pure React implementation
+4. **Modern CSS**: CSS custom properties and modern layouts
+5. **Better Performance**: Virtual DOM and React optimization
+6. **Maintainable Code**: Cleaner separation of concerns
 
 ## Available Scripts
 

@@ -1,0 +1,117 @@
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--ztc-bg-bg-1);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+#preloader::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, rgba(254, 176, 0, 0.1) 0%, transparent 70%);
+  animation: pulse 2s ease-in-out infinite alternate;
+}
+
+.preloader-content {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+#loader {
+  width: 80px;
+  height: 80px;
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  border-top-color: var(--ztc-bg-btn-bg1);
+  border-right-color: var(--ztc-bg-btn-bg1);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 24px;
+  position: relative;
+}
+
+#loader::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  border: 2px solid transparent;
+  border-top-color: rgba(254, 176, 0, 0.3);
+  border-radius: 50%;
+  animation: spin-reverse 0.8s linear infinite;
+}
+
+.preloader-text {
+  color: var(--ztc-text-text-1);
+  font-family: var(--ztc-family-font1);
+  font-size: 18px;
+  font-weight: var(--ztc-weight-semibold);
+  margin: 0;
+  letter-spacing: 1px;
+  animation: fadeInOut 1.5s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-reverse {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes pulse {
+  from {
+    opacity: 0.3;
+  }
+  to {
+    opacity: 0.8;
+  }
+}
+
+@keyframes fadeInOut {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 767px) {
+  #loader {
+    width: 60px;
+    height: 60px;
+    border-width: 3px;
+    margin-bottom: 20px;
+  }
+
+  #loader::before {
+    top: 6px;
+    left: 6px;
+    right: 6px;
+    bottom: 6px;
+    border-width: 1.5px;
+  }
+
+  .preloader-text {
+    font-size: 16px;
+  }
+}
